@@ -136,13 +136,19 @@ if __name__ == "__main__":
         if areNeighbors(path[i], path[i+2]):
             invalid.append(i + 1)
         i = i + 1
+    
+    print(invalid)
         
     invalid.reverse()
-    for pos in invalid:
-        path.pop(pos)
     
-    if path is None:
+    final = []
+    
+    for element in path:
+        if element not in invalid:
+            final.append(element)
+    
+    if final is None:
         print("No solution")
     else:
-        for word in path:
+        for word in final:
             print(word)
