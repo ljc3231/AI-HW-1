@@ -2,6 +2,7 @@
 #Intro to AI
 
 import sys
+#import numpy as np
 
 #Parse dict by line into array
 def parseDict(filename):
@@ -31,7 +32,7 @@ def genNeighbors(word, visited):
       
           
 #returns the path between start and end using dictionary "filepath"        
-def findPath(filepath, start, end,):
+def findPath(filepath, start, end):
     frontier = [str(start)]
     visited = []
     
@@ -55,6 +56,7 @@ def findPath(filepath, start, end,):
         #goal case
         if item == end:
             visited.append(end)
+            #need to return path somehow :(
             return visited
         visited.append(item)
         
@@ -80,6 +82,17 @@ def findPath(filepath, start, end,):
     #fail case    
     return None
         
+#returns T or F
+def areNeighbors(word1, word2):
+    splitWord1 = [char for char in word1]
+    splitWord2 = [char for char in word2]
+    difLetters = []
+    for element in splitWord1:
+        if element not in splitWord2:
+            difLetters.append(element)
+    if len(difLetters) > 1:
+        return False
+    return True    
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -89,11 +102,30 @@ if __name__ == "__main__":
     filepath = sys.argv[1]
     start = sys.argv[2].lower()
     end = sys.argv[3].lower()
-          
-    finalPath = findPath(filepath, start, end)
+    reversed = []
+    visited = findPath(filepath, start, end)
+    #print(visited)
     
-    if finalPath is None:
+    visited.reverse()
+    reversed = visited
+
+    #print(reversed)
+    
+    #Go backwards throgh list, making sure words connect properly
+    i = 0
+    path = []
+    while i < len(visited) - 1:
+        if areNeighbors(reversed[i], reversed[i+1]):
+            path.append(reversed[i])
+            i = i + 1
+        else:
+            reversed.pop(i + 1)
+        
+    path.reverse()
+    path.insert(0, start)
+    
+    if path is None:
         print("No solution")
     else:
-        for word in finalPath:
+        for word in path:
             print(word)
