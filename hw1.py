@@ -68,7 +68,7 @@ def findPath(filepath, start, end,):
         for word in neighbors:
             if word in correctSize and word not in frontier:
                 nextGen.append(word)  
-        print(nextGen)
+        #print(nextGen)
         #Add neighbors to frontier
         for word in nextGen:
             frontier.append(word)
