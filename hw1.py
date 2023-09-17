@@ -125,6 +125,7 @@ if __name__ == "__main__":
             i = i + 1
         else:
             reversed.pop(i + 1)
+    
         
     path.reverse()
     path.insert(0, start)
@@ -134,7 +135,7 @@ if __name__ == "__main__":
     i = 0
     while i < len(visited) - 2:
         if areNeighbors(path[i], path[i+2]):
-            invalid.append(i + 1)
+            invalid.append(path[i+1])
         i = i + 1
     
     #print(invalid)
