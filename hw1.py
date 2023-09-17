@@ -137,7 +137,7 @@ if __name__ == "__main__":
             invalid.append(i + 1)
         i = i + 1
     
-    print(invalid)
+    #print(invalid)
         
     invalid.reverse()
     
