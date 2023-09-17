@@ -54,11 +54,12 @@ def findPath(filepath, start, end,):
         
         #goal case
         if item == end:
+            visited.append(end)
             return visited
         visited.append(item)
         
-        print(gen)
-        print(item)
+        #print(gen)
+        #print(item)
         
         neighbors = genNeighbors(item, visited)
         
@@ -73,9 +74,9 @@ def findPath(filepath, start, end,):
             frontier.append(word)
         
         frontier.remove(item)
-        print(frontier)
-        print(visited)
-        print("\n")
+        #print(frontier)
+        #print(visited)
+        #print("\n")
     #fail case    
     return None
         
