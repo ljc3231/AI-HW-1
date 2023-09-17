@@ -107,7 +107,11 @@ if __name__ == "__main__":
     visited = findPath(filepath, start, end)
     #print(visited)
     
-    visited.reverse()
+    try:
+        visited.reverse() 
+    except:
+        print("No solution")
+        
     reversed = visited
 
     #print(reversed)
