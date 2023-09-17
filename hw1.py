@@ -93,6 +93,7 @@ def areNeighbors(word1, word2):
     if len(difLetters) > 1:
         return False
     return True    
+        
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
@@ -123,6 +124,18 @@ if __name__ == "__main__":
         
     path.reverse()
     path.insert(0, start)
+    
+    #At this point, list is correctly ordered, with extra info
+    invalid = []
+    i = 0
+    while i < len(visited) - 2:
+        if areNeighbors(path[i], path[i+2]):
+            invalid.append(i + 1)
+        i = i + 1
+        
+    invalid.reverse()
+    for pos in invalid:
+        path.pop(pos)
     
     if path is None:
         print("No solution")
